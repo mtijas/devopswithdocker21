@@ -1,0 +1,5 @@
+ ~/projects/…/part1  main  ?  $  sudo docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+ ~/projects/…/part1  main  ?  $  sudo docker images
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+ ~/projects/…/part1  main  ?  $  
