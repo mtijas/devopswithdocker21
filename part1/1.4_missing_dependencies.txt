@@ -1,0 +1,13 @@
+Note: running everything with -it flags to see what happens and to get ability to input directly.
+
+Solution:
+sudo docker run --rm -it --name deps ubuntu sh -c 'apt update && apt install -y curl; echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website;'
+
+One might also create and run the container installing curl, commit the changes to an image and run the command on that image afterwards:
+sudo docker run -it --name deps ubuntu sh -c 'apt update && apt install -y curl'
+sudo docker commit deps mti/ubuntu-curl:latest
+sudo docker rm deps
+sudo docker run -it --name deps mti/ubuntu-curl sh -c 'echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website;'
+
+This approach would allow one to keep an image with curl already installed for future use.
+
