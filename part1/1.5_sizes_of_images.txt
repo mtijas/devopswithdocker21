@@ -1,0 +1,20 @@
+Comparing sizes given by 'docker image ls':
+devopsdockeruh/simple-web-service   ubuntu    4e3362e907d5   7 months ago     83MB
+devopsdockeruh/simple-web-service   alpine    fd312adc88e0   7 months ago     15.7MB
+
+Alpine-based image seems a lot lighter than ubuntu-based, as expected.
+
+Checking for the secret message:
+ ~/projects/…/part1  main  $  sudo docker run -d devopsdockeruh/simple-web-service:alpine
+3b87536ef78a56811da6f333e9bc6dc2c9f09841605412e63f0564b132df9cce
+ ~/projects/…/part1  main  $  sudo docker exec -it 3b sh
+/usr/src/app # tail -f ./text.log
+2021-11-02 12:04:14 +0000 UTC
+2021-11-02 12:04:16 +0000 UTC
+2021-11-02 12:04:18 +0000 UTC
+2021-11-02 12:04:20 +0000 UTC
+Secret message is: 'You can find the source code here: https://github.com/docker-hy'
+2021-11-02 12:04:22 +0000 UTC
+2021-11-02 12:04:24 +0000 UTC
+
+** Seems to work as expected **
