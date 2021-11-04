@@ -1,0 +1,29 @@
+FROM debian:bullseye
+
+EXPOSE 5000
+
+WORKDIR /usr/src/app
+
+# Install dependencies
+RUN apt update && apt install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash
+RUN apt install -y nodejs
+
+# The project was cloned locally so let's copy it here
+COPY ./repos/material-applications/example-frontend/ .
+
+# Install packages
+RUN npm install
+RUN npm install -g serve
+
+ENV REACT_APP_BACKEND_URL=http://localhost:8080
+
+# Build the static files
+RUN npm run build
+
+CMD ["serve", "-s", "-l", "5000", "build"]
+
+
+# Build with: docker build -f 1.14_frontend_dockerfile -t frontend_14 .
+# And run: docker run -d -p 5000:5000 frontend_14
+
