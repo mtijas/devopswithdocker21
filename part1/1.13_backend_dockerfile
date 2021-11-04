@@ -1,0 +1,18 @@
+FROM golang:1.16-bullseye
+
+EXPOSE 8080
+
+WORKDIR /usr/src/app
+
+# The project was cloned locally so let's copy it here
+COPY ./repos/material-applications/example-backend/ .
+
+# Build project
+RUN go build
+
+CMD ["./server"]
+
+
+# Build with: docker build -f 1.13_backend_dockerfile -t backend .
+# And run: docker run -p 8080:8080 backend
+
